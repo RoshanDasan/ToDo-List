@@ -1,0 +1,53 @@
+body{
+    background-color: #21262d;
+}
+
+
+.mainDiv{
+    text-align: center;
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 55px;
+}
+
+.input{
+
+    margin: 0 auto;
+    padding: 5px;
+    width: 300px;
+    display: block;
+    background-color: black;
+    color: aliceblue;
+    
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: red;
+    opacity: 1; /* Firefox */
+  }
+
+
+
+
+ol li {
+    margin: 0 auto;
+    padding: 5px;
+    width: 320px;
+    display: block;
+    background-color: black;
+    color: aliceblue;
+    margin-right: 50px;
+    border-radius: 5px;
+    margin: 10px;
+    
+
+}
+
+ol li i {
+    color: rgb(89, 103, 103);
+    float: right;
+    margin: 5px;
+    cursor: pointer;
+    
+}
+
