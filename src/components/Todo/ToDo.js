@@ -6,10 +6,10 @@ export const ToDo = () => {
   const [listName, setListName] = useState("");
   const [list, setList] = useState([]);
   const [valid, setValid] = useState('')
+  const [editId, setEditId] = useState(null)
 
   const submitList = (event) => {
     event.preventDefault();
-    console.log(!/\s/.test(listName));
 
     if(listName && !(/\s/.test(listName))){
       setList([...list, listName]);
@@ -21,9 +21,21 @@ export const ToDo = () => {
         
       });
     }else{
-      console.log('elseee');
       setValid('Enter a list')
     }
+    if (editId !== null) {
+      const editTodo = list[editId];
+      const updateList = list.map((doList) => {
+        if (doList === editTodo) {
+          return listName;
+        } else {
+          return doList;
+        }
+      });
+      setList(updateList);
+    }
+    setEditId(null)
+    
    
   };
 
@@ -39,8 +51,13 @@ export const ToDo = () => {
       icon: "error",
       
     });
-    console.log(list);
   };
+
+  const editItem = (index) => {
+    const editTodo = list.find((doList)=> doList === list[index])
+    setListName(editTodo)
+    setEditId(index)
+  }
 
   return (
     <div className="mainDiv">
@@ -60,13 +77,15 @@ export const ToDo = () => {
      
   
       <div className="buttonDiv">
-      <button type="submit" className="btn btn-success text-center">Save</button>
+      <button type="submit" className="btn btn-success text-center">{editId !== null?'Edit':'Save'}</button>
       </div>
       </form>
       <ol>
         {list.map((value, index) => (
           <li key={index}>
-            {value} <i className="bi bi-trash3-fill" onClick={() => deleteItem(index)}></i>
+            {value}
+             <i className="bi bi-trash3-fill" onClick={() => deleteItem(index)}></i>
+             <i className="bi bi-pencil-fill" onClick={() => editItem(index)}></i>
           </li>
         ))}
       </ol>
